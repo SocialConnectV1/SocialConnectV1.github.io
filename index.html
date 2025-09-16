@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social-Connect-App</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <i class="fas fa-connectedevelop"></i>
+        </div>
+        <div class="loading-text">Loading Social-Connect-App
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+    <div class="loading-container">
+        <p>Loading Social-Connect-App</p>
+        <div class="progress-bar">
+            <div class="progress" style="width: 55%;"></div>
+        </div>
+        <p class="built-by">Built by Michael</p>
+    </div>
+    
+    <div class="app-container">
+        <!-- Authentication Screen -->
+        <div class="auth-container" id="authScreen">
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="loginTab">Login</button>
+                <button class="auth-tab" id="registerTab">Register</button>
+            </div>
+            <form class="auth-form" id="loginForm">
+                <h2>Welcome Back!</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+            </form>
+            <form class="auth-form" id="registerForm" style="display: none;">
+                <h2>Create an Account</h2>
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Confirm Password</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="auth-btn"><i class="fas fa-user-plus"></i> Register</button>
+            </form>
+        </div>
+
+        <!-- App Screen -->
+        <div class="app-screen" id="appScreen">
+            <header>
+                <div class="logo">
+                    <i class="fas fa-connectedevelop"></i>
+                    <span>SocialConnect</span>
+                </div>
+                <div class="header-search">
+                    <div class="search-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search for people...">
+                    </div>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar"></div>
+                    <span id="userName"></span>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" id="notificationsBtn"><i class="fas fa-bell"></i> Notifications</button>
+                    <button class="header-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                </div>
+            </header>
+            <div class="main-content">
+                <nav class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li><a href="#" data-tab="home" class="active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+                        <li><a href="#" data-tab="profile"><i class="fas fa-user"></i> <span>Profile</span></a></li>
+                        <li><a href="#" data-tab="messages"><i class="fas fa-envelope"></i> <span>Notifications Messages</span></a></li>
+                        <li><a href="#" data-tab="discover"><i class="fas fa-compass"></i> <span>Discover</span></a></li>
+                    </ul>
+                </nav>
+                <div class="content-area">
+                    <div class="content-tabs">
+                        <button class="content-tab active" data-content="feed">Feed</button>
+                        <button class="content-tab" data-content="my-posts">My Posts</button>
+                        <button class="content-tab" data-content="chat">Messages</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="feedContent">
+                            <div class="post-form">
+                                <div class="privacy-options">
+                                    <label class="privacy-option">
+                                        <input type="radio" name="privacy" value="public" checked> Public
+                                    </label>
+                                    <label class="privacy-option">
+                                        <input type="radio" name="privacy" value="private"> Private
+                                    </label>
+                                </div>
+                                <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+                                <button id="postBtn"><i class="fas fa-paper-plane"></i> Post</button>
+                            </div>
+                            <div class="posts-container">
+                                <h2>Latest Posts</h2>
+                                <div id="postsList"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="profileContent">
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-avatar" id="profileAvatar"></div>
+                                    <div class="profile-info">
+                                        <h2 id="profileName"></h2>
+                                        <p id="profileEmail"></p>
+                                        <button class="auth-btn profile-logout-btn" id="profileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                    </div>
+                                </div>
+                                <div class="profile-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-value" id="statPosts">0</div>
+                                        <div class="stat-label">Posts</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value" id="statLikes">0</div>
+                                        <div class="stat-label">Likes</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value" id="statComments">0</div>
+                                        <div class="stat-label">Comments</div>
+                                    </div>
+                                </div>
+                                <div class="user-description">
+                                    <h3>About Me</h3>
+                                    <div class="user-description-content" id="userDescriptionContent">
+                                        No description added yet.
+                                    </div>
+                                    <button class="edit-description-btn" id="editDescriptionBtn">
+                                        <i class="fas fa-edit"></i> Edit Description
+                                    </button>
+                                    <div class="description-form" id="descriptionForm" style="display: none;">
+                                        <textarea class="description-textarea" id="descriptionTextarea" placeholder="Tell others about yourself..."></textarea>
+                                        <button class="save-description-btn" id="saveDescriptionBtn">
+                                            <i class="fas fa-save"></i> Save
+                                        </button>
+                                        <button class="cancel-description-btn" id="cancelDescriptionBtn">
+                                            <i class="fas fa-times"></i> Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="posts-container">
+                                    <h2>My Posts</h2>
+                                    <div id="profilePostsList"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="messagesContent">
+                            <div class="posts-container">
+                                <h2>Notifications Messages</h2>
+                                <div class="chat-actions" style="margin-bottom: 15px">
+                                    <button class="header-btn" id="refreshConversationsBtn">
+                                        <i class="fas fa-sync-alt"></i> Refresh
+                                    </button>
+                                </div>
+                                <div id="conversationList" class="conversation-list"></div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="userProfileContent">
+                            <div class="profile-section">
+                                <div class="profile-header">
+                                    <div class="profile-avatar" id="userProfileAvatar"></div>
+                                    <div class="profile-info">
+                                        <h2 id="userProfileName"></h2>
+                                        <p id="userProfileEmail"></p>
+                                        <div class="user-description">
+                                            <h3>About</h3>
+                                            <div class="user-description-content" id="userProfileDescription">
+                                                No description added yet.
+                                            </div>
+                                        </div>
+                                        <button class="profile-message-btn" id="messageUserBtn">
+                                            <i class="fas fa-envelope"></i> Message
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="profile-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-value" id="userStatPosts">0</div>
+                                        <div class="stat-label">Posts</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value" id="userStatLikes">0</div>
+                                        <div class="stat-label">Likes</div>
+                                    </div>
+                                    <div class="stat-item">
+                                        <div class="stat-value" id="userStatComments">0</div>
+                                        <div class="stat-label">Comments</div>
+                                    </div>
+                                </div>
+                                <div class="posts-container">
+                                    <h2>User's Posts</h2>
+                                    <div id="userProfilePostsList"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="chatContent" style="display: none;">
+                            <div class="chat-container">
+                                <div class="chat-header">
+                                    <div class="chat-header-info">
+                                        <div class="chat-user-avatar" id="chatUserAvatar"></div>
+                                        <div>
+                                            <div class="chat-user-name" id="chatUserName"></div>
+                                            <div class="chat-user-status" id="chatUserStatus">Online</div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-actions">
+                                        <button class="chat-action-btn" id="refreshChatBtn" title="Refresh chat">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </button>
+                                        <button class="chat-action-btn" id="closeChatBtn" title="Close chat">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="chat-placeholder">
+                                        <i class="fas fa-comments"></i>
+                                        <h3>Your messages</h3>
+                                        <p>Select a conversation from the list or start a new one by messaging a user from their profile.</p>
+                                    </div>
+                                </div>
+                                <div class="message-form">
+                                    <textarea class="message-input" id="messageInput" placeholder="Type a message..." rows="1"></textarea>
+                                    <button class="message-send" id="messageSend" disabled>
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Chat -->
+    <div class="full-screen-chat" id="fullScreenChat">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-user-avatar" id="fullScreenChatUserAvatar"></div>
+                <div>
+                    <div class="chat-user-name" id="fullScreenChatUserName"></div>
+                    <div class="chat-user-status" id="fullScreenChatUserStatus">Online</div>
+                </div>
+            </div>
+            <div class="chat-actions">
+                <button class="chat-action-btn" id="refreshFullScreenChatBtn" title="Refresh chat">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="chat-action-btn" id="closeFullScreenChatBtn" title="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chat-messages" id="fullScreenChatMessages"></div>
+        <div class="message-form">
+            <textarea class="message-input" id="fullScreenMessageInput" placeholder="Type a message..." rows="1"></textarea>
+            <button class="message-send" id="fullScreenMessageSend" disabled>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+    <div class="firebase-badge">BUILT BY OGUNLEYE MICHAEL</div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    <!-- Link to JavaScript -->
+    <script src="script.js"></script>
+    </body>
+</html>
